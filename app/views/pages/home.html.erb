@@ -1,4 +1,14 @@
 <h1>Welcome to Moloko3</h1>
-<p>This is the platform where users can find lawyers, post job listings, and communicate with legal experts.</p>
-<%= link_to 'Find Lawyers', users_path %>
-<%= link_to 'Post a Job', new_job_path %>
+<p>Please choose your role:</p>
+
+<div>
+  <!-- Sign Up Buttons -->
+  <%= link_to 'I am a Lawyer (Sign Up)', new_lawyer_registration_path, class: 'btn btn-primary' %>
+  <%= link_to 'I am a Customer (Sign Up)', new_customer_registration_path, class: 'btn btn-secondary' %>
+</div>
+
+<div style="margin-top: 20px;">
+  <!-- Sign In Buttons -->
+  <%= link_to 'Sign In as Lawyer', new_user_session_path, class: 'btn btn-primary' %>
+  <%= link_to 'Sign In as Customer', new_user_session_path, class: 'btn btn-secondary' %>
+</div>

@@ -1,10 +1,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  def new_customer
+    # Custom logic for customer registration
+    build_resource
+    resource.role = 'customer' # Set role as customer
+    respond_with resource
+  end
 
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone, :company_name, :address, :website, :expertise])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :company_name, :address, :website, :expertise])
+  def new_lawyer
+    # Custom logic for lawyer registration
+    build_resource
+    resource.role = 'lawyer' # Set role as lawyer
+    respond_with resource
   end
 end

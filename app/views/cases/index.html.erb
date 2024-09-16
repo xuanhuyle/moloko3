@@ -1,0 +1,19 @@
+<h1>Your Cases</h1>
+
+<% if current_user.role == 'customer' %>
+  <% @cases.each do |case_record| %>
+    <div>
+      <h2><%= case_record.title %></h2>
+      <p><strong>Lawyer:</strong> <%= case_record.lawyer.first_name %> <%= case_record.lawyer.last_name %></p>
+      <p><strong>Description:</strong> <%= case_record.description %></p>
+    </div>
+  <% end %>
+<% elsif current_user.role == 'lawyer' %>
+  <% @cases.each do |case_record| %>
+    <div>
+      <h2><%= case_record.title %></h2>
+      <p><strong>Client:</strong> <%= case_record.user.first_name %> <%= case_record.user.last_name %></p>
+      <p><strong>Description:</strong> <%= case_record.description %></p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,6 +1,25 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
+  # Marketplace for lawyers to view and filter jobs
+  def index
+    @jobs = Job.all
+
+    # Apply filters if provided
+    if params[:expertise].present?
+      @jobs = @jobs.where("expertise ILIKE ?", "%#{params[:expertise]}%")
+    end
+
+    if params[:location].present?
+      @jobs = @jobs.where("location ILIKE ?", "%#{params[:location]}%")
+    end
+
+    if params[:timeline].present?
+      @jobs = @jobs.where("timeline >= ?", params[:timeline])
+    end
+  end
+
+  # Customers can create jobs
   def new
     @job = Job.new
   end
@@ -8,7 +27,7 @@ class JobsController < ApplicationController
   def create
     @job = current_user.jobs.build(job_params)
     if @job.save
-      redirect_to @job, notice: 'Job was successfully created.'
+      redirect_to @job, notice: 'Job listing successfully created.'
     else
       render :new
     end
@@ -16,10 +35,6 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-  end
-
-  def index
-    @jobs = Job.all
   end
 
   private

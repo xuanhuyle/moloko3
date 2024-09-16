@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  lawyer: one
+  title: MyString
+  description: MyText
+  location: MyString
+  expertise: MyString
+  urgency: MyString
+  timeline: 2024-09-16
+
+two:
+  user: two
+  lawyer: two
+  title: MyString
+  description: MyText
+  location: MyString
+  expertise: MyString
+  urgency: MyString
+  timeline: 2024-09-16

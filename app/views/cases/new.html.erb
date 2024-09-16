@@ -1,6 +1,6 @@
-<h1>Post a New Job</h1>
+<h1>Create a New Case</h1>
 
-<%= form_with(model: @job, local: true) do |f| %>
+<%= form_with(model: @case, local: true) do |f| %>
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -31,7 +31,12 @@
     <%= f.date_select :timeline %>
   </div>
 
+  <div class="field">
+    <%= f.label :lawyer_id, "Assign to a Lawyer" %>
+    <%= f.collection_select :lawyer_id, User.where(role: 'lawyer'), :id, :full_name, prompt: "Select a Lawyer" %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Post Job" %>
+    <%= f.submit "Create Case" %>
   </div>
 <% end %>

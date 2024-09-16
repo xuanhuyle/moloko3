@@ -1,0 +1,10 @@
+<h1>All Lawyers</h1>
+
+<% @users.each do |user| %>
+  <div>
+    <h2><%= user.first_name %> <%= user.last_name %></h2>
+    <p>Expertise: <%= user.expertise %></p>
+    <p>Phone: <%= user.phone %></p>
+    <p>Company: <%= user.company_name %></p>
+  </div>
+<% end %>

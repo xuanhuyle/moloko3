@@ -1,4 +1,4 @@
-class CreateJobs < ActiveRecord::Migration[7.1]
+class CreateJobs < ActiveRecord::Migration[6.1]
   def change
     create_table :jobs do |t|
       t.string :title
@@ -7,7 +7,7 @@ class CreateJobs < ActiveRecord::Migration[7.1]
       t.string :expertise
       t.string :urgency
       t.date :timeline
-      t.references :user, null: false, foreign_key: true
+      t.references :user, foreign_key: true # This adds the user_id column
 
       t.timestamps
     end

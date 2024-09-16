@@ -1,0 +1,26 @@
+<h1>Find a Lawyer</h1>
+
+<%= form_with url: find_lawyers_path, method: :get, local: true do |f| %>
+  <div>
+    <%= f.label :expertise, "Expertise" %>
+    <%= f.text_field :expertise, value: params[:expertise] %>
+  </div>
+
+  <div>
+    <%= f.label :location, "Location" %>
+    <%= f.text_field :location, value: params[:location] %>
+  </div>
+
+  <div>
+    <%= f.submit "Search" %>
+  </div>
+<% end %>
+
+<% @users.each do |user| %>
+  <div>
+    <h2><%= user.first_name %> <%= user.last_name %></h2>
+    <p><strong>Expertise:</strong> <%= user.expertise %></p>
+    <p><strong>Location:</strong> <%= user.address %></p>
+    <p><strong>Phone:</strong> <%= user.phone %></p>
+  </div>
+<% end %>

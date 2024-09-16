@@ -1,6 +1,33 @@
-<h1>Job Listings</h1>
+<h1>Jobs Marketplace</h1>
 
+<!-- Filter form for lawyers -->
+<%= form_with(url: jobs_path, method: :get, local: true) do |f| %>
+  <div>
+    <%= f.label :expertise, "Expertise" %>
+    <%= f.text_field :expertise, value: params[:expertise] %>
+  </div>
+
+  <div>
+    <%= f.label :location, "Location" %>
+    <%= f.text_field :location, value: params[:location] %>
+  </div>
+
+  <div>
+    <%= f.label :timeline, "Start Date (Timeline)" %>
+    <%= f.date_field :timeline, value: params[:timeline] %>
+  </div>
+
+  <div>
+    <%= f.submit "Filter Jobs" %>
+  </div>
+<% end %>
+
+<!-- List all available jobs -->
 <% @jobs.each do |job| %>
-  <h3><%= link_to job.title, job %></h3>
-  <p><%= job.description.truncate(100) %></p>
+  <div>
+    <h3><%= link_to job.title, job_path(job) %></h3>
+    <p><strong>Location:</strong> <%= job.location %></p>
+    <p><strong>Expertise:</strong> <%= job.expertise %></p>
+    <p><strong>Start Date:</strong> <%= job.timeline %></p>
+  </div>
 <% end %>

@@ -1,0 +1,31 @@
+<h1>Welcome, <%= @user.first_name %> <%= @user.last_name %> (Lawyer)</h1>
+
+<%= link_to 'Log Out', destroy_user_session_path, method: :delete, data: { 'turbolinks' => false }, class: 'btn btn-danger' %>
+
+<h2>Your Profile</h2>
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<h2>All Jobs Posted</h2>
+<% @jobs.each do |job| %>
+  <div>
+    <h3><%= link_to job.title, job_path(job) %></h3>
+    <p><strong>Location:</strong> <%= job.location %></p>
+    <p><strong>Expertise:</strong> <%= job.expertise %></p>
+    <p><strong>Start Date:</strong> <%= job.timeline %></p>
+  </div>
+<% end %>
+
+<h2>Your Cases (Past and Present)</h2>
+<% @cases.each do |case_record| %>
+  <div>
+    <h3><%= case_record.title %></h3>
+    <p><strong>Client:</strong> <%= case_record.user.first_name %> <%= case_record.user.last_name %></p>
+  </div>
+<% end %>
+
+<h2>Your Customers (Past and Present)</h2>
+<% @clients.each do |client| %>
+  <div>
+    <p><strong>Client:</strong> <%= client.first_name %> <%= client.last_name %></p>
+  </div>
+<% end %>
